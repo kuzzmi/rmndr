@@ -1,46 +1,41 @@
 const path = require('path');
-const StringReplace = require('string-replace-webpack-plugin');
+
+const GenerateJsonPlugin = require('generate-json-webpack-plugin');
+const CopyWebpackPlugin  = require('copy-webpack-plugin');
 
 const { name, version, description } = require('./package.json');
+const manifest = require('./src/manifest.json');
 
 const distPath = path.join(__dirname, 'dist');
-const srcPath =  path.join(__dirname, 'src');
-const entry = path.join(__dirname, 'src/index.js');
-// const manifest = path.join(__dirname, 'src/manifest.json');
+const html     = path.join(__dirname, 'src/index.html');
+const entry    = path.join(__dirname, 'src/index.js');
 
 module.exports = {
-    entry: {
-        entry,
-        // manifest
-    },
+    entry,
     output: {
         path: distPath,
         filename: 'index.js'
     },
     module: {
         loaders: [{
-            test: /.jsx?$/,
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
             loader: 'babel'
-        }, {
-            test: /.json$/,
-            loader: 'json'
-        }, {
-            test: /manifest.json$/,
-            loader: StringReplace.replace({
-                replacements: [{
-                    pattern: /__NAME__/,
-                    replacement: () => name,
-                }, {
-                    pattern: /__DESCRIPTION__/,
-                    replacement: () => description,
-                }, {
-                    pattern: /__VERSION__/,
-                    replacement: () => version,
-                }]
-            })
         }]
     },
     plugins: [
-        new StringReplace()
+        new CopyWebpackPlugin([{
+            from: html,
+            to: 'index.html'
+        }]),
+        new GenerateJsonPlugin('manifest.json', manifest, (key, value) => {
+            switch (value) {
+                case '__NAME__': return name;
+                case '__DESCRIPTION__': return description;
+                case '__VERSION__': return version;
+                default:
+                    return value;
+            }
+        }, 4)
     ]
 }
