@@ -52,6 +52,13 @@ module.exports = Object.assign(defaults, {
             loaders: [
                 'babel'
             ]
+        }, {
+            test: /\.scss$/,
+            loaders: [
+                'style',
+                'css',
+                'sass'
+            ]
         }]
     },
     plugins

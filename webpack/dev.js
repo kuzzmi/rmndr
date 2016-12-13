@@ -19,6 +19,13 @@ module.exports = Object.assign(defaults, {
                 'react-hot',
                 'babel'
             ]
+        }, {
+            test: /\.scss$/,
+            loaders: [
+                'style',
+                'css',
+                'sass'
+            ]
         }]
     },
     plugins: [

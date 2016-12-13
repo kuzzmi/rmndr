@@ -1,0 +1,34 @@
+.remindersListComponent {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: flex;
+            height: 50px;
+            border-bottom: 1px solid rgb(240, 240, 240);
+
+            .info {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                border-left: 1px solid rgb(240, 240, 240);
+                border-right: 1px solid rgb(240, 240, 240);
+            }
+
+            button {
+                width: 50px;
+                height: 50px;
+                background-color: transparent;
+                border: none;
+            }
+
+            .leftButton {
+            }
+
+            .rightButton {
+            }
+        }
+    }
+}
