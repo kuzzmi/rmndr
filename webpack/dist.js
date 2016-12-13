@@ -9,13 +9,17 @@ const CopyWebpackPlugin  = require('copy-webpack-plugin');
 const { name, version, description } = require('../package.json');
 const manifest = require('../src/manifest.json');
 
-const html  = path.join(__dirname, '../src/index.html');
-const entry = path.join(__dirname, '../src/index.js');
+const html       = path.join(__dirname, '../src/index.html');
+const background = path.join(__dirname, '../src/background.js');
+const entry      = path.join(__dirname, '../src/index.js');
 
 const plugins = [
     new CopyWebpackPlugin([{
         from: html,
         to: 'index.html'
+    }, {
+        from: background,
+        to: 'background.js'
     }]),
     new GenerateJsonPlugin('manifest.json', manifest, (key, value) => {
         switch (value) {

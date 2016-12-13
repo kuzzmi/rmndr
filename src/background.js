@@ -1,0 +1,2 @@
+chrome.alarms.onAlarm.addListener(() => {
+});

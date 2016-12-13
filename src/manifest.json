@@ -11,6 +11,16 @@
         "default_popup": "index.html"
     },
 
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [ "background.js" ]
+        }
+    ],
+
     "permissions": [
         "tabs",
         "storage",
