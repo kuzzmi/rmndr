@@ -5,7 +5,7 @@ const set = (object, callback) => {
         window.localStorage.setItem(key, JSON.stringify(value));
         callback && callback();
     } else {
-        chrome.storage.set(object, callback);
+        chrome.storage.sync.set(object, callback);
     }
 };
 
@@ -14,7 +14,7 @@ const get = (key, callback) => {
         const value = window.localStorage.getItem(key);
         callback && callback({ [ key ]: JSON.parse( value ) });
     } else {
-        chrome.storage.get(key, callback);
+        chrome.storage.sync.get(key, callback);
     }
 };
 
