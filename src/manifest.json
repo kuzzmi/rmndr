@@ -11,18 +11,14 @@
         "default_popup": "index.html"
     },
 
-    "content_scripts": [
-        {
-            "matches": [
-                "http://*/*",
-                "https://*/*"
-            ],
-            "js": [ "background.js" ]
-        }
-    ],
+    "background": {
+        "scripts": [ "background.js" ],
+        "persistent": false
+    },
 
     "permissions": [
         "tabs",
+        "alarms",
         "storage",
         "notifications"
     ]

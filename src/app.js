@@ -156,6 +156,10 @@ class App extends Component {
                 reminder
             ]
         });
+
+        chrome.alarms.create('', {
+            delayInMinutes: 1
+        });
     }
 
     render() {
