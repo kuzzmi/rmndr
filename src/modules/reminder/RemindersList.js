@@ -20,21 +20,21 @@ class RemindersList extends Component {
                             <div className="leftButton">
                                 <button
                                     onClick={ () => editReminder(reminder) }>
-                                    e
+                                    <span className="lnr lnr-pencil"></span>
                                 </button>
                             </div>
                             <div className="info">
-                                <div>
+                                <div className="title">
                                     { reminder.title }
                                 </div>
-                                <div>
+                                <div className="time">
                                     { reminder.time }
                                 </div>
                             </div>
                             <div className="rightButton">
                                 <button
                                     onClick={ () => removeReminder(reminder) }>
-                                    x
+                                    <span className="lnr lnr-trash"></span>
                                 </button>
                             </div>
                         </li>

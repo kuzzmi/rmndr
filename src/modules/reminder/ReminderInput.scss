@@ -19,26 +19,37 @@
         display: block;
         width: 100%;
         margin: 0;
-        border: 2px solid rgb(220, 220, 220);
+        border: 2px solid rgba(176, 131, 198, 0.3);
         border-radius: 2px;
         padding: 3px 5px;
+        color: #998D9F;
+        transition: all .12s ease-out;
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+
+        &:focus {
+            border: 2px solid rgb(230, 168, 221);
+            color: #998D9F;
+        }
     }
 
     button {
+        cursor: pointer;
         display: flex;
         align-content: center;
         justify-content: center;
         height: 30px;
         width: 30px;
+        border-radius: 2px;
         background-color: transparent;
-        color: rgb(220, 220, 220);
-        font-size: 24px;
-        border-radius: 100%;
-        line-height: 1;
-        border: 1px solid rgb(230, 230, 230);
+        color: #e7daee;
+        font-size: 28px;
+        line-height: 0px;
+        border: 2px solid rgb(231, 218, 238);
 
-        &:hover {
-            background-color: rgba(255, 255, 255, 1);
+        &:hover, &:focus {
+            background-color: rgba(176, 130, 198, 0.1);
+            color: rgba(176, 130, 198, 0.7);
         }
     }
 }
