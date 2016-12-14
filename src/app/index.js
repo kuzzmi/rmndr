@@ -42,13 +42,14 @@ class App extends Component {
         Storage.set({ reminders });
     }
 
-    handleReminderSave({ title, time, id }) {
+    handleReminderSave({ title, time, id, created }) {
         const { reminders, editing } = this.state;
         const isNew = !id;
         const reminder = {
             id: id || nextId(),
             title,
-            time
+            time,
+            created: created || Date.now()
         };
 
         if (isNew) {

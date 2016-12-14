@@ -3031,6 +3031,10 @@ react-dom@^15.4.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
+react-flip-move@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-2.7.2.tgz#5e7b9b127651486363e2bfcd1f24c95340001c7a"
+
 react-hot-api@^0.4.5:
   version "0.4.7"
   resolved "https://registry.yarnpkg.com/react-hot-api/-/react-hot-api-0.4.7.tgz#a7e22a56d252e11abd9366b61264cf4492c58171"

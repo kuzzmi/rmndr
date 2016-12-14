@@ -10,7 +10,8 @@ class ReminderInput extends Component {
         this.state = {
             id: null,
             title: '',
-            time: '09:00'
+            time: '09:00',
+            created: null
         };
 
         bind(this, 'handleTitleChange');
@@ -36,18 +37,20 @@ class ReminderInput extends Component {
         this.setState({
             id: '',
             title: '',
-            time: '09:00'
+            time: '09:00',
+            created: null
         });
     }
 
     handleSave() {
-        const { id, title, time } = this.state;
+        const { id, title, time, created } = this.state;
 
         if (title && time) {
             this.props.saveReminder({
                 id,
                 title,
-                time
+                time,
+                created
             });
             this.resetState();
         }

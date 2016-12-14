@@ -57,7 +57,7 @@ body {
         flex-direction: column;
 
         .list {
-            overflow: auto;
+            overflow-y: auto;
         }
     }
 }
