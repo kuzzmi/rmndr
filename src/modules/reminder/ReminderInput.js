@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { bind, nextId } from 'app/utils.js';
+import { Utils } from 'app';
 import './ReminderInput.scss';
 
 class ReminderInput extends Component {
@@ -14,11 +14,11 @@ class ReminderInput extends Component {
             created: null
         };
 
-        bind(this, 'handleTitleChange');
-        bind(this, 'handleTimeChange');
-        bind(this, 'handleKeyPress');
-        bind(this, 'handleSave');
-        bind(this, 'resetState');
+        Utils.bind(this, 'handleTitleChange');
+        Utils.bind(this, 'handleTimeChange');
+        Utils.bind(this, 'handleKeyPress');
+        Utils.bind(this, 'handleSave');
+        Utils.bind(this, 'resetState');
     }
 
     componentDidMount() {

@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const defaults = require('./default.js');
+const { name, version } = require('../package.json');
 
 const entry = [
     'webpack-dev-server/client?http://0.0.0.0:8081',
@@ -29,7 +30,7 @@ module.exports = Object.assign(defaults, {
         }]
     },
     plugins: [
-        new webpack.DefinePlugin({
+        new webpack.DefinePlugin(defaults.defines, {
             __DEV__: true
         })
     ]

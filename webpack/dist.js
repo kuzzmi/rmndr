@@ -11,15 +11,15 @@ const manifest = require('../src/manifest.json');
 
 const html       = path.join(__dirname, '../src/index.html');
 const background = path.join(__dirname, '../src/background.js');
-const entry      = path.join(__dirname, '../src/index.js');
+const entry = {
+    index: path.join(__dirname, '../src/index.js'),
+    background: path.join(__dirname, '../src/background.js')
+};
 
 const plugins = [
     new CopyWebpackPlugin([{
         from: html,
         to: 'index.html'
-    }, {
-        from: background,
-        to: 'background.js'
     }]),
     new GenerateJsonPlugin('manifest.json', manifest, (key, value) => {
         switch (value) {
@@ -30,7 +30,7 @@ const plugins = [
                 return value;
         }
     }, 4),
-    new webpack.DefinePlugin({
+    new webpack.DefinePlugin(defaults.defines, {
         __DEV__: false,
         'process.env':{
             'NODE_ENV': JSON.stringify('production')

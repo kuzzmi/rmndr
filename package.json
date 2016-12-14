@@ -1,24 +1,24 @@
 {
-  "name": "Yominder",
+  "name": "rmndr",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --content-base dist/ --config webpack/dev.js --port 8081",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p --config webpack/dist.js && npm run load",
+    "build": "webpack -p --config webpack/dist.js",
     "load": "chrome --load-extension=./dist/ --silent-launch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kuzzmi/yominder.git"
+    "url": "git+https://github.com/kuzzmi/rmndr.git"
   },
   "author": "Igor Kuzmenko <igor@kuzzmi.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kuzzmi/yominder/issues"
+    "url": "https://github.com/kuzzmi/rmndr/issues"
   },
-  "homepage": "https://github.com/kuzzmi/yominder#readme",
+  "homepage": "https://github.com/kuzzmi/rmndr#readme",
   "devDependencies": {
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.9",

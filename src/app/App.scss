@@ -1,5 +1,14 @@
 @import "~normalize.css/normalize.css";
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Quicksand:400,500');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900|Quicksand:400,500');
+
+@mixin noselect() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 * {
     box-sizing: border-box;
@@ -36,15 +45,26 @@ body {
     box-shadow: 0 0 40px rgb(240, 240, 240);
 
     .header {
+        @include noselect();
         font-family: 'Quicksand', sans-serif;
 
         text-align: center;
-        font-size: 13px;
         font-weight: 800;
-        text-transform: uppercase;
-        color: #A8A8A8;
-        letter-spacing: 8px;
         padding: 15px 0;
+
+        .name {
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-size: 13px;
+            color: #CF98D3;
+        }
+
+        .version {
+            color: #EDC7EC;
+            font-size: 9px;
+            font-weight: 900;
+            vertical-align: super;
+        }
     }
 
     .separator {
