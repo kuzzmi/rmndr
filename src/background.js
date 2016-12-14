@@ -1,5 +1,6 @@
-chrome.alarms.onAlarm.addListener(({ name }) => {
+chrome.alarms.onAlarm.addListener((alarm) => {
     chrome.storage.sync.get('reminders', ({ reminders }) => {
+        const { name } = alarm;
         const reminder = reminders.filter(r => r.id === name).pop();
         chrome.notifications.create({
             title: 'Yo!',

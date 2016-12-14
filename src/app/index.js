@@ -69,7 +69,7 @@ class App extends Component {
         const when = chrono.parse(time)[0].start.date().getTime();
 
         // refactor
-        chrome.alarms.create(id, { when });
+        chrome.alarms.create(reminder.id, { when });
     }
 
     handleReminderRemove(reminder) {
