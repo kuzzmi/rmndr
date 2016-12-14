@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import { bind, nextId } from 'app/utils.js';
 import './ReminderInput.scss';
-import chrono from 'chrono-node';
-import moment from 'moment';
 
 class ReminderInput extends Component {
     constructor(props) {

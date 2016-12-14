@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
+import chrono from 'chrono-node';
+// import moment from 'moment';
 import Storage from './storage.js';
+
 import './App.scss';
 
 import {
@@ -61,6 +64,11 @@ class App extends Component {
                 editing: null
             });
         }
+
+        const when = chrono.parse(time)[0].start.date().getTime();
+
+        // refactor
+        chrome.alarms.create(id, { when });
     }
 
     handleReminderRemove(reminder) {

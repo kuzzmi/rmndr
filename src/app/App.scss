@@ -8,18 +8,32 @@
 
 html,
 body {
-    width: 400px;
-    max-height: 400px;
     overflow: hidden;
+    background-color: #FCFBFC;
+    width: 100%;
+    min-height: 120px;
+    max-height: 500px;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .appComponent {
+    width: 400px;
+    min-height: 120px;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
     font-size: 13px;
     color: #998D9F;
     background-color: #FCFBFC;
-    border: 2px solid rgb(240, 240, 240);
+    border: 1px solid rgb(210, 210, 210);
+    box-shadow: 0 0 40px rgb(240, 240, 240);
 
     .header {
         font-family: 'Quicksand', sans-serif;
@@ -41,5 +55,9 @@ body {
     .body {
         display: flex;
         flex-direction: column;
+
+        .list {
+            overflow: auto;
+        }
     }
 }

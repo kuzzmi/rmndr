@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --hot --content-base dist/ --config webpack/dev.js --port 8081",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p --config webpack/dist.js"
+    "build": "webpack -p --config webpack/dist.js && npm run load",
+    "load": "chrome --load-extension=./dist/ --silent-launch"
   },
   "repository": {
     "type": "git",
