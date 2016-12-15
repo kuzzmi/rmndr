@@ -22,5 +22,9 @@ module.exports = {
             modules: 'modules'
         }
     },
-    defines
+    defines,
+    paths: {
+        srcPath,
+        distPath
+    }
 };

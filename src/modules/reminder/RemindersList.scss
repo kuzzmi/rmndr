@@ -9,52 +9,6 @@
             flex-direction: column;
             height: 50px;
             border-bottom: 1px solid rgb(240, 240, 240);
-
-            .info {
-                flex: 1;
-                display: flex;
-                align-items: center;
-                border-left: 1px solid rgb(240, 240, 240);
-                border-right: 1px solid rgb(240, 240, 240);
-                padding: 0 20px;
-                overflow: hidden;
-                font-weight: 700;
-
-                .title {
-                    flex: 1;
-                }
-            }
-
-            button {
-                cursor: pointer;
-                width: 50px;
-                height: 50px;
-                background-color: transparent;
-                border: none;
-                color: rgba(176, 130, 198, 0.3);
-                font-size: 20px;
-
-                &:hover, &:focus {
-                    background-color: rgba(176, 130, 198, 0.1);
-                    color: rgba(176, 130, 198, 0.7);
-                }
-            }
-
-            .leftButton {
-            }
-
-            .rightButton {
-            }
         }
     }
-}
-
-.reminder {
-    display: flex;
-}
-
-.progress {
-    height: 2px;
-    background: linear-gradient(to right, #ae81c5 0%, #e6a8dd 100%);
-    transition: width 1s linear;
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
     Storage,
+    Utils,
     Datetime
 } from 'app';
 
@@ -12,8 +13,6 @@ import {
     ReminderInput
 } from 'modules/reminder';
 
-import { bind, nextId } from './utils.js';
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -23,9 +22,9 @@ class App extends Component {
             editing: null
         };
 
-        bind(this, 'handleReminderSave');
-        bind(this, 'handleReminderRemove');
-        bind(this, 'handleReminderEdit');
+        Utils.bind(this, 'handleReminderSave');
+        Utils.bind(this, 'handleReminderRemove');
+        Utils.bind(this, 'handleReminderEdit');
     }
 
     componentDidMount() {
@@ -45,7 +44,7 @@ class App extends Component {
         const { reminders, editing } = this.state;
         const isNew = !id;
         const reminder = {
-            id: id || nextId(),
+            id: id || Utils.nextId(),
             title,
             time,
             created: created || Date.now()
@@ -66,8 +65,6 @@ class App extends Component {
         }
 
         // const when = Datetime.getFromTime(time);
-
-        // Alarms.create(reminder.id, { when });
     }
 
     handleReminderRemove(reminder) {
