@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Utils } from 'app';
+import { Utils, Datetime } from 'app';
 import './ReminderInput.scss';
 
 class ReminderInput extends Component {
@@ -10,12 +10,13 @@ class ReminderInput extends Component {
         this.state = {
             id: null,
             title: '',
-            time: '09:00',
-            created: null
+            rawTitle: '',
+            time: null,
+            created: null,
+            canSave: false
         };
 
         Utils.bind(this, 'handleTitleChange');
-        Utils.bind(this, 'handleTimeChange');
         Utils.bind(this, 'handleKeyPress');
         Utils.bind(this, 'handleSave');
         Utils.bind(this, 'resetState');
@@ -27,9 +28,16 @@ class ReminderInput extends Component {
 
     componentWillReceiveProps({ reminder }) {
         if (reminder) {
-            const { id, title, time } = reminder;
+            const { id, created, title, rawTitle, time } = reminder;
             this.input.focus();
-            this.setState({ id, title, time });
+            this.setState({
+                id,
+                rawTitle,
+                title,
+                time,
+                created,
+                canSave: true
+            });
         }
     }
 
@@ -37,18 +45,21 @@ class ReminderInput extends Component {
         this.setState({
             id: '',
             title: '',
-            time: '09:00',
-            created: null
+            rawTitle: '',
+            time: null,
+            created: null,
+            canSave: false,
         });
     }
 
     handleSave() {
-        const { id, title, time, created } = this.state;
+        const { id, title, rawTitle, time, created, canSave } = this.state;
 
-        if (title && time) {
+        if (canSave) {
             this.props.saveReminder({
                 id,
                 title,
+                rawTitle,
                 time,
                 created
             });
@@ -59,17 +70,22 @@ class ReminderInput extends Component {
     handleTitleChange(e) {
         const { target: { value } } = e;
 
-        this.setState({
-            title: value
-        });
-    }
+        const { title, dates } = Datetime.parse(value);
 
-    handleTimeChange(e) {
-        const { target: { value } } = e;
-
-        this.setState({
-            time: value
-        });
+        if (dates) {
+            this.setState({
+                title,
+                rawTitle: value,
+                time: dates[0].start.date(),
+                canSave: true,
+            });
+        } else {
+            this.setState({
+                title: value,
+                rawTitle: value,
+                canSave: false,
+            });
+        }
     }
 
     handleKeyPress({ key }) {
@@ -80,7 +96,7 @@ class ReminderInput extends Component {
     }
 
     render() {
-        const { title, time, id } = this.state;
+        const { rawTitle, id, canSave } = this.state;
 
         return (
             <div className="reminderInputComponent">
@@ -88,23 +104,13 @@ class ReminderInput extends Component {
                     <input
                         ref={ e => this.input = e }
                         type="text"
-                        value={ title }
-                        placeholder="What?"
+                        value={ rawTitle }
+                        placeholder="What and when?"
                         onKeyPress={ this.handleKeyPress }
                         onChange={ this.handleTitleChange }
                         />
                 </div>
-                <div className="timeInput">
-                    <input
-                        type="time"
-                        step={ 60 }
-                        value={ time }
-                        placeholder="When?"
-                        onKeyPress={ this.handleKeyPress }
-                        onChange={ this.handleTimeChange }
-                        />
-                </div>
-                <div>
+                <div className="buttonContainer" style={{ maxWidth: canSave ? 100 : 0 }}>
                     <button
                         onClick={ this.handleSave }
                         >

@@ -1,4 +1,4 @@
-import App from './app.js';
+import App from './App.js';
 import Alarms from './alarms.js';
 import Storage from './storage.js';
 import * as Utils from './utils.js';

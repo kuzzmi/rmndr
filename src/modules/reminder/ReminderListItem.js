@@ -8,10 +8,9 @@ import {
 import './ReminderListItem.scss';
 
 const getPercents = (since, until) => {
-    const _until = Datetime.getFromTime(until);
-    const total = _until - since;        // ms between end and start
-    const ellapsed = Date.now() - since; // ms between now and start
-    return ellapsed / ~~( total / 100 );
+    const total = new Date(until).getTime() - since; // ms between end and start
+    const ellapsed = Date.now() - since;             // ms between now and start
+    return ~~( ellapsed / ~~( total / 100 ) );       // percents of ellapsed time to total
 };
 
 class TimeProgress extends Component {
@@ -77,6 +76,8 @@ class ReminderListItem extends Component {
     render() {
         const { reminder } = this.props;
 
+        const timeString = Datetime.getCalendar(reminder.time);
+
         return (
             <span className="reminderListItemComponent">
                 <div className="reminder">
@@ -91,7 +92,7 @@ class ReminderListItem extends Component {
                             { reminder.title }
                         </div>
                         <div className="time">
-                            { reminder.time }
+                            { timeString }
                         </div>
                     </div>
                     <div className="rightButton">

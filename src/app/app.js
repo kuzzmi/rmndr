@@ -37,15 +37,24 @@ class App extends Component {
 
     componentDidUpdate() {
         const { reminders } = this.state;
-        Storage.set({ reminders });
+        Storage.set({
+            reminders: reminders.map(r => ({
+                id: r.id,
+                title: r.title,
+                time: r.time.toString(),
+                rawTitle: r.rawTitle,
+                created: r.created,
+            }))
+        });
     }
 
-    handleReminderSave({ title, time, id, created }) {
+    handleReminderSave({ rawTitle, title, time, id, created }) {
         const { reminders, editing } = this.state;
         const isNew = !id;
         const reminder = {
             id: id || Utils.nextId(),
             title,
+            rawTitle,
             time,
             created: created || Date.now()
         };
