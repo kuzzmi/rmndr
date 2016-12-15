@@ -9,7 +9,7 @@ const RemindersList = ({ reminders, removeReminder, editReminder }) =>
     <div className="remindersListComponent">
         <FlipMove
             staggerDurationBy={ 10 }
-            duration={ 250 }
+            duration={ 120 }
             maintainContainerHeight={ true }
             typeName="ul">
             {
