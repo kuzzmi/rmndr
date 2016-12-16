@@ -1,26 +1,20 @@
-const webpack = require('webpack');
 const path = require('path');
 
-const defaults = require('./default.js');
-
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
-const CopyWebpackPlugin  = require('copy-webpack-plugin');
+
+const defaults = require('./default.js');
+const common = require('./common.dist.js');
 
 const { name, version, description } = require('../package.json');
 const manifest = require('../src/manifest.json');
 
-const html       = path.join(__dirname, '../src/index.html');
-const background = path.join(__dirname, '../src/background.js');
 const entry = {
-    index: path.join(__dirname, '../src/index.js'),
-    background: path.join(__dirname, '../src/background.js')
+    index: path.join(__dirname, '../src/index.ext.js'),
+    background: path.join(__dirname, '../src/background.js'),
 };
 
 const plugins = [
-    new CopyWebpackPlugin([{
-        from: html,
-        to: 'index.html'
-    }]),
+    ...common.plugins,
     new GenerateJsonPlugin('manifest.json', manifest, (key, value) => {
         switch (value) {
             case '__NAME__': return name;
@@ -30,36 +24,29 @@ const plugins = [
                 return value;
         }
     }, 4),
-    new webpack.DefinePlugin(defaults.defines, {
-        __DEV__: false,
-        'process.env':{
-            'NODE_ENV': JSON.stringify('production')
-        }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-        compress:{
-            warnings: true
-        }
-    })
 ];
 
 module.exports = Object.assign(defaults, {
     entry,
+    output: {
+        path: path.join(__dirname, '../dist/ext/'),
+        filename: defaults.output.filename,
+    },
     module: {
         loaders: [{
             test: /\.jsx?$/,
             exclude: /node_modules/,
             loaders: [
-                'babel'
-            ]
+                'babel',
+            ],
         }, {
             test: /\.scss$/,
             loaders: [
                 'style',
                 'css',
-                'sass'
-            ]
-        }]
+                'sass',
+            ],
+        }],
     },
-    plugins
+    plugins,
 });

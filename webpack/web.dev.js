@@ -2,14 +2,13 @@ const webpack = require('webpack');
 const path = require('path');
 
 const defaults = require('./default.js');
-const { name, version } = require('../package.json');
 
 const entry = {
     index: [
         'webpack-dev-server/client?http://0.0.0.0:8081',
         'webpack/hot/only-dev-server',
-        path.join(__dirname, '../src/index.js')
-    ]
+        path.join(__dirname, '../src/index.web.js'),
+    ],
 };
 
 module.exports = Object.assign(defaults, {
@@ -20,20 +19,20 @@ module.exports = Object.assign(defaults, {
             exclude: /node_modules/,
             loaders: [
                 'react-hot',
-                'babel'
-            ]
+                'babel',
+            ],
         }, {
             test: /\.scss$/,
             loaders: [
                 'style',
                 'css',
-                'sass'
-            ]
-        }]
+                'sass',
+            ],
+        }],
     },
     plugins: [
         new webpack.DefinePlugin(defaults.defines, {
-            __DEV__: true
-        })
-    ]
+            __DEV__: true,
+        }),
+    ],
 });

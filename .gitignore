@@ -38,3 +38,6 @@ jspm_packages
 
 # Distribution folder
 dist
+
+# Yarn error log
+yarn-error.log

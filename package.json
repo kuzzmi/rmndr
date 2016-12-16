@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --content-base dist/ --config webpack/dev.js --port 8081",
+    "start": "webpack-dev-server --hot --content-base dist/web/ --config webpack/web.dev.js --port 8081",
+    "start:electron": "electron electron.app.js",
     "test": "mocha --compilers js:babel-register src/**/*.spec.js",
     "test:watch": "mocha -w --compilers js:babel-register src/**/*.spec.js",
-    "build": "webpack -p --config webpack/dist.js",
-    "load": "chrome --load-extension=./dist/ --silent-launch"
+    "build:web": "webpack -p --config webpack/web.dist.js",
+    "build:ext": "webpack -p --config webpack/ext.dist.js"
   },
   "repository": {
     "type": "git",

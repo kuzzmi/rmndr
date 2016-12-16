@@ -13,7 +13,7 @@ class ReminderInput extends Component {
             rawTitle: '',
             time: null,
             created: null,
-            canSave: false
+            canSave: false,
         };
 
         Utils.bind(this, 'handleTitleChange');
@@ -36,7 +36,7 @@ class ReminderInput extends Component {
                 title,
                 time,
                 created,
-                canSave: true
+                canSave: true,
             });
         }
     }
@@ -61,7 +61,7 @@ class ReminderInput extends Component {
                 title,
                 rawTitle,
                 time,
-                created
+                created,
             });
             this.resetState();
         }
@@ -120,7 +120,7 @@ class ReminderInput extends Component {
                     </button>
                 </div>
             </div>
-        )
+        );
     }
 }
 

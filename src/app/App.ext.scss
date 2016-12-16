@@ -1,0 +1,14 @@
+$width: 400px;
+$height: 500px;
+
+html,
+body {
+    height: $height;
+
+    #root {
+        .appComponent {
+            width: $width;
+            height: $height;
+        }
+    }
+}

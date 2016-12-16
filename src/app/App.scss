@@ -1,14 +1,6 @@
 @import "~normalize.css/normalize.css";
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900|Quicksand:400,500');
-
-@mixin noselect() {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+@import './mixins';
 
 * {
     box-sizing: border-box;
@@ -17,68 +9,65 @@
 
 html,
 body {
+    width: 100%;
+}
+
+body {
+    background-color: #FCFBFC;
     overflow: hidden;
-    background-color: #FCFBFC;
-    width: 100%;
-    min-height: 120px;
-    max-height: 500px;
-}
 
-#root {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.appComponent {
-    width: 400px;
-    // min-height: 120px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    color: #795989;
-    background-color: #FCFBFC;
-    border: 0px solid rgb(210, 210, 210);
-    box-shadow: 0 0 40px rgb(240, 240, 240);
-
-    .header {
-        @include noselect();
-        font-family: 'Quicksand', sans-serif;
-
-        text-align: center;
-        font-weight: 800;
-        padding: 15px 0;
-        cursor: default;
-
-        .name {
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            font-size: 13px;
-            color: #CF98D3;
-        }
-
-        .version {
-            color: #EDC7EC;
-            font-size: 9px;
-            font-weight: 900;
-            vertical-align: super;
-        }
-    }
-
-    .separator {
-        height: 5px;
-        background: linear-gradient(to right, #ae81c5 0%, #e6a8dd 100%);
-    }
-
-    .body {
+    #root {
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        .list {
-            overflow-y: auto;
+        .appComponent {
+            display: flex;
+            flex-direction: column;
+            font-size: 15px;
+            color: #795989;
+            background-color: #FCFBFC;
+
+            .header {
+                @include noselect();
+                font-family: 'Quicksand', sans-serif;
+
+                text-align: center;
+                font-weight: 800;
+                padding: 15px 0;
+                cursor: default;
+
+                .name {
+                    text-transform: uppercase;
+                    letter-spacing: 8px;
+                    font-size: 13px;
+                    color: #CF98D3;
+                }
+
+                .version {
+                    color: #EDC7EC;
+                    font-size: 9px;
+                    font-weight: 900;
+                    vertical-align: super;
+                }
+            }
+
+            .separator {
+                height: 5px;
+                background: linear-gradient(to right, #ae81c5 0%, #e6a8dd 100%);
+            }
+
+            .body {
+                display: flex;
+                flex-direction: column;
+
+                .list {
+                    overflow-y: auto;
+                }
+            }
         }
     }
 }
+

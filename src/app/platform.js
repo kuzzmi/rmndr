@@ -1,6 +1,6 @@
 let platform;
 
-if (window.chrome.extension) {
+if (window.chrome && window.chrome.extension) {
     platform = 'chrome/extension';
 } else if (window && window.process && window.process.type) {
     platform = 'electron';
@@ -9,7 +9,7 @@ if (window.chrome.extension) {
 }
 
 const Platform = {
-    is: check => platform === check
-}
+    is: check => platform === check,
+};
 
 export default Platform;

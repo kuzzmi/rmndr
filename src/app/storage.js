@@ -2,7 +2,7 @@ import Platform from 'app/platform';
 
 const set = (object, callback) => {
     if (Platform.is('chrome/extension')) {
-        chrome.storage.sync.set(object, callback);
+        window.chrome.storage.sync.set(object, callback);
     } else {
         const key = Object.keys(object).pop();
         const value = object[key];
@@ -13,7 +13,7 @@ const set = (object, callback) => {
 
 const get = (key, callback) => {
     if (Platform.is('chrome/extension')) {
-        chrome.storage.sync.get(key, callback);
+        window.chrome.storage.sync.get(key, callback);
     } else {
         const value = window.localStorage.getItem(key);
         callback && callback({ [ key ]: JSON.parse( value ) });
@@ -22,7 +22,7 @@ const get = (key, callback) => {
 
 const Storage = {
     set,
-    get
+    get,
 };
 
 export default Storage;
