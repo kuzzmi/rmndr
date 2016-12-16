@@ -23,8 +23,7 @@
         font-family: 'Lato', sans-serif;
 
         &:focus {
-            border: 2px solid rgb(230, 168, 221);
-            padding: 4px 9px;
+            border-color: rgb(230, 168, 221);
             color: #795989;
         }
     }
