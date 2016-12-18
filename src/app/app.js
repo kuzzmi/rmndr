@@ -1,16 +1,19 @@
+/* globals __NAME__ */
+/* globals __VERSION__ */
+
 import React, { Component } from 'react';
 
 import {
     Storage,
+    Alarms,
     Utils,
-    Datetime
 } from 'app';
 
 import './App.scss';
 
 import {
     RemindersList,
-    ReminderInput
+    ReminderInput,
 } from 'modules/reminder';
 
 class App extends Component {
@@ -19,7 +22,7 @@ class App extends Component {
 
         this.state = {
             reminders: [],
-            editing: null
+            editing: null,
         };
 
         Utils.bind(this, 'handleReminderSave');
@@ -30,55 +33,69 @@ class App extends Component {
     componentDidMount() {
         Storage.get('reminders', ({ reminders }) => {
             this.setState({
-                reminders: reminders || []
+                reminders: reminders || [],
             });
         });
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         const { reminders } = this.state;
-        Storage.set({
-            reminders: reminders.map(r => ({
-                id: r.id,
-                title: r.title,
-                time: r.time.toString(),
-                rawTitle: r.rawTitle,
-                created: r.created,
-            }))
-        });
+        if (prevState.reminders !== reminders) {
+            Storage.set({
+                reminders: reminders.map(r => ({
+                    id: r.id,
+                    title: r.title,
+                    time: r.time.toString(),
+                    rawTitle: r.rawTitle,
+                    created: r.created,
+                })),
+            }, () => {
+                reminders.forEach(reminder => {
+                    const when = new Date(reminder.time).getTime();
+
+                    if (when > Date.now()) {
+                        Alarms.create(reminder.id, {
+                            when,
+                            callback: () => {
+                                new Notification('Hey!', {
+                                    body: reminder.title,
+                                });
+                            },
+                        });
+                    }
+                });
+            });
+        }
     }
 
     handleReminderSave({ rawTitle, title, time, id, created }) {
-        const { reminders, editing } = this.state;
+        const { reminders } = this.state;
         const isNew = !id;
         const reminder = {
             id: id || Utils.nextId(),
             title,
             rawTitle,
             time,
-            created: created || Date.now()
+            created: created || Date.now(),
         };
 
         if (isNew) {
             this.setState({
                 reminders: [
                     ...this.state.reminders,
-                    reminder
-                ]
+                    reminder,
+                ],
             });
         } else {
             this.setState({
                 reminders: reminders.map(r => r.id === id ? reminder : r),
-                editing: null
+                editing: null,
             });
         }
-
-        // const when = Datetime.getFromTime(time);
     }
 
     handleReminderRemove(reminder) {
-        const reminders =
-            this.state.reminders.filter(r => r.id !== reminder.id);
+        const reminders = this.state.reminders.filter(r => r.id !== reminder.id);
 
         this.setState({ reminders });
     }

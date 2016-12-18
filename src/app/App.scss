@@ -1,5 +1,5 @@
 @import "~normalize.css/normalize.css";
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900|Quicksand:400,500');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
 @import './mixins';
 
 * {
@@ -32,10 +32,8 @@ body {
 
             .header {
                 @include noselect();
-                font-family: 'Quicksand', sans-serif;
 
                 text-align: center;
-                font-weight: 800;
                 padding: 15px 0;
                 cursor: default;
 
@@ -43,6 +41,7 @@ body {
                     text-transform: uppercase;
                     letter-spacing: 8px;
                     font-size: 13px;
+                    font-weight: 700;
                     color: #CF98D3;
                 }
 

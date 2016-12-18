@@ -9,5 +9,5 @@ export {
     Alarms,
     Storage,
     Utils,
-    Datetime
+    Datetime,
 };

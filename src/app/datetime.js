@@ -3,18 +3,19 @@ import moment from 'moment';
 
 moment.updateLocale('en', {
     calendar : {
-        sameDay : 'LT',
-        nextDay : 'LT',
+        lastDay : '[Yesterday at] LT',
+        sameDay : '[Today at] LT',
+        nextDay : '[Tomorrow at] LT',
         nextWeek : 'dddd [at] LT',
-        sameElse : 'L [at] LT'
-    }
+        sameElse : 'L [at] LT',
+    },
 });
 
 export const getCalendar = date => moment(new Date( date )).calendar();
 
 export const getNow = () => {
     return Date.now();
-}
+};
 
 export const getFromTime = (text, ref) => {
     const parsed = chrono.parse(text, ref || getNow());
@@ -27,7 +28,7 @@ export const parse = (text, ref) => {
 
     if (!parsed.length) {
         return {
-            title: text
+            title: text,
         };
     }
 
@@ -35,6 +36,6 @@ export const parse = (text, ref) => {
 
     return {
         title,
-        dates: parsed
+        dates: parsed,
     };
 };

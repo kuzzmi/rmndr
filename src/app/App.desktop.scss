@@ -1,0 +1,6 @@
+@import "./mixins";
+@import "./App.ext.scss";
+
+* {
+    @include noselect;
+}

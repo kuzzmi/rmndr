@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --content-base dist/web/ --config webpack/web.dev.js --port 8081",
-    "start:electron": "electron electron.app.js",
+    "start:electron": "webpack-dev-server --hot --content-base dist/desktop/ --config webpack/desktop.dev.js --port 8081",
+    "open:electron": "electron electron.app.js",
     "test": "mocha --compilers js:babel-register src/**/*.spec.js",
     "test:watch": "mocha -w --compilers js:babel-register src/**/*.spec.js",
     "build:web": "webpack -p --config webpack/web.dist.js",
@@ -47,6 +48,7 @@
     "chrono-node": "^1.2.5",
     "css-loader": "^0.26.1",
     "immutability-helper": "^2.0.0",
+    "later": "^1.2.0",
     "moment": "^2.17.1",
     "normalize.css": "^5.0.0",
     "react": "^15.4.1",
