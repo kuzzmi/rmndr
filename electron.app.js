@@ -3,17 +3,45 @@ const url = require('url');
 const electron = require('electron');
 const app = electron.app;
 
+const config = require('./electron.config');
+
 const BrowserWindow = electron.BrowserWindow;
+
+const browserWindowConfig = config.all.window;
+browserWindowConfig.backgroundColor = '#FCFBFC';
 
 let mainWindow;
 
-function createWindow() {
-    mainWindow = new BrowserWindow({
-        toolbox: false,
-        width: 400,
-        height: 540,
-        resizable: false,
+const bindConfigToEvents = window => {
+    window.on('maximize', () => {
+        config.set('window.maximized', true);
     });
+
+    window.on('resize', () => {
+        const bounds = window.getBounds();
+        config.set('window.width', bounds.width);
+        config.set('window.height', bounds.height);
+    });
+
+    window.on('move', () => {
+        const bounds = window.getBounds();
+        config.set('window.x', bounds.x);
+        config.set('window.y', bounds.y);
+    });
+
+    window.on('unmaximize', () => {
+        config.set('window.maximized', false);
+    });
+};
+
+function createWindow() {
+    mainWindow = new BrowserWindow(browserWindowConfig);
+
+    bindConfigToEvents(mainWindow);
+
+    if (config.get('window.maximized')) {
+        mainWindow.maximize();
+    }
 
     mainWindow.setMenu(null);
 
