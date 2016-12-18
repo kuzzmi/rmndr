@@ -16,6 +16,33 @@ import {
     ReminderInput,
 } from 'modules/reminder';
 
+const syncReminders = reminders => {
+    Storage.set({
+        reminders: reminders.map(r => ({
+            id: r.id,
+            title: r.title,
+            time: r.time.toString(),
+            rawTitle: r.rawTitle,
+            created: r.created,
+        })),
+    }, () => {
+        reminders.forEach(reminder => {
+            const when = new Date(reminder.time).getTime();
+
+            if (when > Date.now()) {
+                Alarms.create(reminder.id, {
+                    when,
+                    callback: () => {
+                        new Notification('Hey!', {
+                            body: reminder.title,
+                        });
+                    },
+                });
+            }
+        });
+    });
+};
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -41,30 +68,7 @@ class App extends Component {
     componentDidUpdate(prevProps, prevState) {
         const { reminders } = this.state;
         if (prevState.reminders !== reminders) {
-            Storage.set({
-                reminders: reminders.map(r => ({
-                    id: r.id,
-                    title: r.title,
-                    time: r.time.toString(),
-                    rawTitle: r.rawTitle,
-                    created: r.created,
-                })),
-            }, () => {
-                reminders.forEach(reminder => {
-                    const when = new Date(reminder.time).getTime();
-
-                    if (when > Date.now()) {
-                        Alarms.create(reminder.id, {
-                            when,
-                            callback: () => {
-                                new Notification('Hey!', {
-                                    body: reminder.title,
-                                });
-                            },
-                        });
-                    }
-                });
-            });
+            syncReminders(reminders);
         }
     }
 
