@@ -7,7 +7,7 @@ const set = (object, callback) => {
         const key = Object.keys(object).pop();
         const value = object[key];
         window.localStorage.setItem(key, JSON.stringify(value));
-        callback && callback();
+        callback && callback(object);
     }
 };
 

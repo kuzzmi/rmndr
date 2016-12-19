@@ -15,13 +15,27 @@ describe('Datetime', () => {
         });
 
         it('should get the next closest time to the reference date from text', () => {
-            const ref = new Date(2016, 11, 15, 23, 59);
-            const text = '9:00';
-            const expected = new Date(2016, 11, 16, 9, 0).getTime();
+            const time = {
+                ref: new Date(2016, 11, 15, 23, 59),
+                text: '9:00',
+                expected: new Date(2016, 11, 16, 9, 0).getTime(),
+            };
 
-            const result = Datetime.getFromTime(text, ref).getTime();
+            time.actual = Datetime.getFromTime(time.text, time.ref).getTime();
 
-            expect(result).to.be.equal(expected);
+            expect(time.actual).to.be.equal(time.expected);
+        });
+
+        it('should get the next closest day and time to the reference date from text', () => {
+            const day = {
+                ref: new Date(2016, 11, 19, 13, 0),
+                text: 'on friday at 10',
+                expected: new Date(2016, 11, 23, 10, 0).getTime(),
+            };
+
+            day.actual = Datetime.getFromTime(day.text, day.ref).getTime();
+
+            expect(day.actual).to.be.equal(day.expected);
         });
     });
 

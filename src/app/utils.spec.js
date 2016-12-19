@@ -26,7 +26,7 @@ describe('Utils', () => {
             const object = {
                 test() {
                     expect(this).to.equal(object);
-                }
+                },
             };
 
             Utils.bind(object, 'test');
