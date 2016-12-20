@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "",
+    "start": "webpack-dev-server --hot --content-base dist/web/ --config webpack/web.dev.js --port 8081",
     "start:electron": "webpack-dev-server --hot --content-base dist/desktop/ --config webpack/desktop.dev.js --port 8081",
     "start:react-native": "node node_modules/react-native/local-cli/cli.js start",
     "start:react-native-no-cache": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
@@ -33,6 +33,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-react-native": "^1.9.1",
     "babel-register": "^6.18.0",
+    "camelcase": "^4.0.0",
     "chai": "^3.5.0",
     "copy-webpack-plugin": "^4.0.1",
     "enzyme": "^2.6.0",

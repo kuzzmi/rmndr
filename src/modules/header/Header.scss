@@ -1,0 +1,29 @@
+@import '../../app/mixins';
+
+.HeaderComponent {
+    @include noselect();
+
+    text-align: center;
+    padding: 15px 0;
+    cursor: default;
+
+    .name {
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #CF98D3;
+    }
+
+    .version {
+        color: #EDC7EC;
+        font-size: 9px;
+        font-weight: 900;
+        vertical-align: super;
+    }
+
+    .separator {
+        height: 5px;
+        background: linear-gradient(to right, #ae81c5 0%, #e6a8dd 100%);
+    }
+}

@@ -15,13 +15,6 @@ module.exports = {
         path: distPath,
         filename: '[name].js'
     },
-    resolve: {
-        root: srcPath,
-        alias: {
-            app: 'app',
-            modules: 'modules'
-        }
-    },
     defines,
     paths: {
         srcPath,

@@ -1,7 +1,4 @@
-/* globals __NAME__ */
-/* globals __VERSION__ */
-
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 import {
     Storage,
@@ -10,12 +7,7 @@ import {
     Notifications,
 } from 'app';
 
-import './App.scss';
-
-import {
-    RemindersList,
-    ReminderInput,
-} from 'modules/reminder';
+import Renderer from './AppRenderer.js';
 
 const syncReminders = reminders => {
     Storage.set({
@@ -104,36 +96,7 @@ class App extends Component {
     }
 
     render() {
-        const { reminders, editing } = this.state;
-
-        return (
-            <div className="appComponent">
-                <div className="header">
-                    <span className="name">
-                        { __NAME__ }
-                    </span>
-                    <span className="version">
-                        v{ __VERSION__ }
-                    </span>
-                </div>
-                <div className="separator"></div>
-                <div className="body">
-                    <div className="input">
-                        <ReminderInput
-                            reminder={ editing }
-                            saveReminder={ this.handleReminderSave }
-                            />
-                        </div>
-                    <div className="list">
-                        <RemindersList
-                            reminders={ reminders }
-                            editReminder={ this.handleReminderEdit }
-                            removeReminder={ this.handleReminderRemove }
-                            />
-                    </div>
-                </div>
-            </div>
-        );
+        return Renderer.call(this, this.props, this.state);
     }
 }
 
