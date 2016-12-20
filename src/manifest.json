@@ -5,6 +5,12 @@
     "description": "__DESCRIPTION__",
     "version": "__VERSION__",
 
+    "icons": {
+        "32": "icon32.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+
     "browser_action": {
         "default_icon": {},
         "default_title": "Yominder",
