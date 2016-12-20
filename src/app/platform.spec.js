@@ -18,15 +18,9 @@ describe('platform', () => {
 
         it('should return correct platform', () => {
 
-            global.window = {
-                chrome: {
-                    extension: true,
-                },
-            };
-
             Platform = require('./platform.js').default;
 
-            expect(Platform.is('chrome/extension')).to.be.true;
+            expect(Platform.is('node')).to.be.true;
         });
     });
 });

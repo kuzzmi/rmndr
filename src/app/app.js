@@ -7,6 +7,7 @@ import {
     Storage,
     Alarms,
     Utils,
+    Notifications,
 } from 'app';
 
 import './App.scss';
@@ -28,16 +29,10 @@ const syncReminders = reminders => {
     }, () => {
         reminders.forEach(reminder => {
             const when = new Date(reminder.time).getTime();
+            const callback = () => Notifications.create({ message: reminder.title });
 
             if (when > Date.now()) {
-                Alarms.create(reminder.id, {
-                    when,
-                    callback: () => {
-                        new Notification('Hey!', {
-                            body: reminder.title,
-                        });
-                    },
-                });
+                Alarms.create(reminder.id, { when, callback });
             }
         });
     });

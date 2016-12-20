@@ -1,18 +1,22 @@
-import { getFromTime } from 'app/datetime.js';
 import Alarms from 'app/alarms.js';
+import Notifications from 'app/notifications.js';
 
-window.chrome.alarms.onAlarm.addListener(alarm => {
-    window.chrome.storage.sync.get('reminders', ({ reminders }) => {
-        const { name } = alarm;
-        const reminder = reminders.filter(r => r.id === name).pop();
-        window.chrome.notifications.create({
-            title: 'Yo!',
-            type: 'basic',
-            message: reminder.title,
-            requireInteraction: true,
-            iconUrl: 'data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7',
-        });
-    });
+Alarms.addListener({ name } => {
+    const parsedName = name.split('.');
+    const type       = parsedName[0];
+    const id         = parsedName[1];
+
+    switch (type) {
+        case 'reminder':
+            window.chrome.storage.sync.get('reminders', ({ reminders }) => {
+                const { name } = alarm;
+                const reminder = reminders.filter(r => r.id === id).pop();
+                Notifications.create({ message: reminder.title });
+            });
+            break;
+        default:
+            break;
+    }
 });
 
 window.chrome.storage.onChanged.addListener(changes => {
@@ -21,7 +25,7 @@ window.chrome.storage.onChanged.addListener(changes => {
             const change = changes[key];
 
             change.newValue.forEach(reminder => {
-                const when = getFromTime(reminder.time);
+                const when = new Date(reminder.time).getTime();
 
                 if (when > Date.now()) {
                     Alarms.create(reminder.id, { when });
