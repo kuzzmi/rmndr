@@ -9,7 +9,7 @@ const listeners = {};
 
 const create = options => {
     if (!options) {
-        throw new Error('Alerts.create() expects options object as its only parameter');
+        throw new Error('Alarms.create() expects options object as its only parameter');
     }
 
     const { type, name, when, callback } = options;
@@ -18,7 +18,7 @@ const create = options => {
         !name || typeof name !== 'string' ||
         !( when || when === 0 ) || typeof when !== 'number' ||
         !callback || typeof callback !== 'function') {
-        throw new Error('Alerts.create() expects a valid options object, but was called with invalid');
+        throw new Error('Alarms.create() expects a valid options object, but was called with invalid');
     }
 
     if (Platform.is('chrome/extension')) {

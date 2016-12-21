@@ -1,0 +1,6 @@
+.TimeProgressComponent {
+    height: 2px;
+    margin-top: -2px;
+    background: linear-gradient(to right, #ae81c5 0%, #e6a8dd 100%);
+    transition: width 1s linear;
+}

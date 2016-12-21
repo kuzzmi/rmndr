@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FlipMove from 'react-flip-move';
 
 import './RemindersList.scss';
 
-import ReminderListItem from './ReminderListItem.js';
+import { RemindersListItem } from '../remindersListItem';
 
-const RemindersList = ({ reminders, removeReminder, editReminder }) =>
-    <div className="remindersListComponent">
+export default props =>
+    <div className="RemindersListComponent">
         <FlipMove
             staggerDurationBy={ 10 }
             duration={ 120 }
             maintainContainerHeight={ true }
             typeName="ul">
             {
-                reminders && reminders.map(reminder =>
+                props.reminders && props.reminders.map(reminder =>
                     <li key={ reminder.id }>
-                        <ReminderListItem
-                            removeReminder={ removeReminder }
-                            editReminder={ editReminder }
+                        <RemindersListItem
+                            removeReminder={ props.removeReminder }
+                            editReminder={ props.editReminder }
                             reminder={ reminder }
                             />
                     </li>
@@ -25,5 +25,3 @@ const RemindersList = ({ reminders, removeReminder, editReminder }) =>
             }
         </FlipMove>
     </div>;
-
-export default RemindersList;

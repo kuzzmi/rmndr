@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import { Utils, Datetime } from '../../app';
 
-import { Utils, Datetime } from 'app';
-import './ReminderInput.scss';
-
-class ReminderInput extends Component {
+class RemindersInputBase extends Component {
     constructor(props) {
         super(props);
 
@@ -16,10 +14,12 @@ class ReminderInput extends Component {
             canSave: false,
         };
 
-        Utils.bind(this, 'handleTitleChange');
-        Utils.bind(this, 'handleKeyPress');
-        Utils.bind(this, 'handleSave');
-        Utils.bind(this, 'resetState');
+        [
+            'handleTitleChange',
+            'handleKeyPress',
+            'handleSave',
+            'resetState',
+        ].forEach(Utils.bind(this));
     }
 
     componentDidMount() {
@@ -94,34 +94,6 @@ class ReminderInput extends Component {
             this.input.focus();
         }
     }
-
-    render() {
-        const { rawTitle, id, canSave } = this.state;
-
-        return (
-            <div className="reminderInputComponent">
-                <div className="titleInput">
-                    <input
-                        ref={ e => this.input = e }
-                        type="text"
-                        value={ rawTitle }
-                        placeholder="What and when?"
-                        onKeyPress={ this.handleKeyPress }
-                        onChange={ this.handleTitleChange }
-                        />
-                </div>
-                <div className="buttonContainer" style={{ maxWidth: canSave ? 100 : 0 }}>
-                    <button
-                        onClick={ this.handleSave }
-                        >
-                        {
-                            id ? <span style={{ fontSize: 14 }} className="lnr lnr-pencil"></span> : <span>+</span>
-                        }
-                    </button>
-                </div>
-            </div>
-        );
-    }
 }
 
-export default ReminderInput;
+export default RemindersInputBase;

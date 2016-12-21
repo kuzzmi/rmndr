@@ -1,4 +1,4 @@
-import Platform from 'app/platform';
+import Platform from './platform.js';
 
 const set = (object, callback) => {
     if (Platform.is('chrome/extension')) {

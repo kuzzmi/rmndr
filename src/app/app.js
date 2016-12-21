@@ -5,10 +5,11 @@ import {
     Alarms,
     Utils,
     Notifications,
-} from 'app';
+} from './index.js';
 
 import Renderer from './AppRenderer.js';
 
+// Side effects
 const syncReminders = reminders => {
     Storage.set({
         reminders: reminders.map(r => ({
@@ -24,7 +25,12 @@ const syncReminders = reminders => {
             const callback = () => Notifications.create({ message: reminder.title });
 
             if (when > Date.now()) {
-                Alarms.create(reminder.id, { when, callback });
+                Alarms.create({
+                    type: 'reminder',
+                    name: reminder.id,
+                    when,
+                    callback,
+                });
             }
         });
     });
@@ -39,9 +45,11 @@ class App extends Component {
             editing: null,
         };
 
-        Utils.bind(this, 'handleReminderSave');
-        Utils.bind(this, 'handleReminderRemove');
-        Utils.bind(this, 'handleReminderEdit');
+        [
+            'handleReminderSave',
+            'handleReminderRemove',
+            'handleReminderEdit',
+        ].forEach(Utils.bind(this));
     }
 
     componentDidMount() {

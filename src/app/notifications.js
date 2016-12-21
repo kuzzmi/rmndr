@@ -1,4 +1,4 @@
-import Platform from 'app/platform';
+import Platform from './platform';
 
 const create = options => {
     const {

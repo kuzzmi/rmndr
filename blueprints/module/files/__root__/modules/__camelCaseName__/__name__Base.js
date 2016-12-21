@@ -6,7 +6,7 @@ class <%= pascalEntityName %>Base extends Component {
         super(props);
         
         [
-        ].forEach(Utils.bind(this));
+        ].forEach(bind(this));
     }
 }
 
