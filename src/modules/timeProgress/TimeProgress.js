@@ -1,5 +1,5 @@
 import Base from './TimeProgressBase.js';
-import Renderer from './TimeProgressRenderer.js';
+import Renderer from './TimeProgressRenderer';
 
 export default class TimeProgress extends Base {
     constructor(props) {

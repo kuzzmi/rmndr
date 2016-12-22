@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Renderer from './RemindersListRenderer.js';
+import Renderer from './RemindersListRenderer';
 
 export default class RemindersList extends Component {
     render() {

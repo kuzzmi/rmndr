@@ -9,7 +9,7 @@ export default function(props, state) {
         <div className="ReminderInputComponent">
             <div className="titleInput">
                 <input
-                    ref={ e => this.input = e }
+                    ref={ e => e.focus() }
                     type="text"
                     value={ rawTitle }
                     placeholder="What and when?"

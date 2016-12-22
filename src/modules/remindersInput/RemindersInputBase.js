@@ -22,14 +22,10 @@ class RemindersInputBase extends Component {
         ].forEach(Utils.bind(this));
     }
 
-    componentDidMount() {
-        this.input.focus();
-    }
-
     componentWillReceiveProps({ reminder }) {
         if (reminder) {
             const { id, created, title, rawTitle, time } = reminder;
-            this.input.focus();
+            // this.input.focus();
             this.setState({
                 id,
                 rawTitle,
@@ -91,7 +87,7 @@ class RemindersInputBase extends Component {
     handleKeyPress({ key }) {
         if (key === 'Enter') {
             this.handleSave();
-            this.input.focus();
+            // this.input.focus();
         }
     }
 }

@@ -1,5 +1,5 @@
 import Base from './RemindersListItemBase.js';
-import Renderer from './RemindersListItemRenderer.js';
+import Renderer from './RemindersListItemRenderer';
 
 export default class RemindersListItem extends Base {
     constructor(props) {

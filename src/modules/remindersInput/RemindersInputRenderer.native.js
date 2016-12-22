@@ -1,16 +1,25 @@
 import React from 'react';
 import {
     StyleSheet,
-    Text,
+    TextInput,
     View,
 } from 'react-native';
 
-export default (props, state) =>
-    <View style={ styles.component }>
-        <Text style={ styles.text }>
-            RemindersInput Component
-        </Text>
-    </View>;
+export default function(props, state) {
+    const { rawTitle, id, canSave } = state;
+
+    return (
+        <View style={ styles.component }>
+            <TextInput
+                style={ styles.input }
+                value={ rawTitle }
+                placeholder="What and when?"
+                onChange={ this.handleTitleChange }
+                onEndEditing={ this.handleSave }
+            />
+        </View>
+    );
+}
 
 const styles = StyleSheet.create({
     component: {

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+
 import {
     AppRegistry,
     StyleSheet,
     View,
 } from 'react-native';
 
-import {
-    Header,
-} from './src/modules/header';
+import { App } from './src/app';
 
 export default class rmndrz extends Component {
     render() {
         return (
-          <View style={styles.container}>
-            <Header />
-          </View>
+            <View style={styles.container}>
+                <App />
+            </View>
         );
     }
 }

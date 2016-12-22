@@ -7,7 +7,7 @@ import {
     Notifications,
 } from './index.js';
 
-import Renderer from './AppRenderer.js';
+import Renderer from './AppRenderer';
 
 // Side effects
 const syncReminders = reminders => {
