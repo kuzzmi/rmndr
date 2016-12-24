@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="2296px" height="180px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+      <linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+        <stop class="stop1" offset="0%"/>
+        <stop class="stop2" offset="100%"/>
+      </linearGradient>
+      <style type="text/css"><![CDATA[
+        .wave { fill: url(#Gradient1); }
+        .stop1 { stop-color: white; stop-opacity: 0.3; }
+        .stop2 { stop-color: white; stop-opacity: 0; }
+      ]]></style>
+  </defs>
+
+  <g>
+      <g>
+          <path d="M0.2 144 C172.1 143.6 452.9 133.8 646 81 C942 -0.1 1148 4 1148 4 L1148 181 L0.7 181 C0.7 181 -91.3 144.2 0.2 144 Z" class="wave" />
+      </g>
+      <g>
+          <path d="M2295.8 144 C2123.9 143.6 1843.1 133.8 1650 81 C1354 -0.1 1148 4 1148 4 L1148 181 L2295.3 181 C2295.3 181 2387.3 144.2 2295.8 144 Z" class="wave" />
+      </g>
+  </g>
+
+</svg>
