@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     StyleSheet,
+    Button,
     TextInput,
     View,
 } from 'react-native';
@@ -14,9 +15,13 @@ export default function(props, state) {
                 style={ styles.input }
                 value={ rawTitle }
                 placeholder="What and when?"
-                onChange={ this.handleTitleChange }
+                onChangeText={ this.handleTitleChange }
                 onEndEditing={ this.handleSave }
             />
+            <Button
+                title="+"
+                onPress={ this.handleSave }
+                />
         </View>
     );
 }

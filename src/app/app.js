@@ -1,11 +1,9 @@
 import { Component } from 'react';
 
-import {
-    Storage,
-    Alarms,
-    Utils,
-    Notifications,
-} from './index.js';
+import Storage from './storage';
+import Alarms from './alarms.js';
+import * as Utils from './utils.js';
+import Notifications from './notifications.js';
 
 import Renderer from './AppRenderer';
 

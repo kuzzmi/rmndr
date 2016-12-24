@@ -64,7 +64,8 @@ class RemindersInputBase extends Component {
     }
 
     handleTitleChange(e) {
-        const { target: { value } } = e;
+        // Getting a value from either native or web platform event
+        const value = typeof e === 'string' ? e : e.target.value;
 
         const { title, dates } = Datetime.parse(value);
 

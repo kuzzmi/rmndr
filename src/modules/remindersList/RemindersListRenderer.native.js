@@ -8,7 +8,7 @@ import {
 export default (props, state) =>
     <View style={ styles.component }>
         <Text style={ styles.text }>
-            RemindersList Component
+            RemindersList Component: { props.reminders.length }
         </Text>
     </View>;
 
