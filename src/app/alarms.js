@@ -22,11 +22,7 @@ const create = options => {
     }
 
     if (Platform.is('chrome/extension')) {
-        global.window.chrome.alarms.create(`${type}.${name}`, {
-            when,
-            // delayInMinutes: after,
-            // periodInMinutes: every,
-        });
+        global.window.chrome.alarms.create(`${type}.${name}`, { when });
     } else if (Platform.is('electron') || Platform.is('web')) {
         const now = Date.now();
         setTimeout(callback, when - now + 1000);
@@ -43,6 +39,20 @@ const reset = () => {
     return listeners;
 };
 
+const init = () => {
+    if (Platform.is('chrome/extension')) {
+        global.window.chrome.alarms.onAlarm.addListener(alarm => {
+            const parsed = alarm.name.split('.');
+            const type = parsed[0];
+            const name = parsed[1];
+
+            const fns = listeners[type];
+
+            fns.forEach(fn => fn({ type, name, alarm }));
+        });
+    }
+};
+
 const getListeners = () => listeners;
 
 const addListener = (type, fn) => {
@@ -55,6 +65,7 @@ const removeListener = (type, fn) => {
 };
 
 const Alarms = {
+    init,
     create,
     reset,
     getListeners,
