@@ -13,6 +13,8 @@ Alarms.addListener('reminder', ({ name }) => {
     });
 });
 
+window.chrome.notifications.onClicked.addListener(window.chrome.notifications.clear);
+
 window.chrome.storage.onChanged.addListener(changes => {
     for (let key in changes) {
         if (key === 'reminders') {
