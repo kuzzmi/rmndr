@@ -7,7 +7,7 @@ export default {
         try {
             const key = Object.keys(object).pop();
             const value = object[key];
-            await AsyncStorage.setItem(`${STORAGE_KEY}:${key}`, value);
+            await AsyncStorage.setItem(`${STORAGE_KEY}:${key}`, JSON.stringify(value));
             callback && callback(object);
         } catch (e) {
             console.error(e);
@@ -15,8 +15,8 @@ export default {
     },
     get: async (key, callback) => {
         try {
-            const value = await AsyncStorage.setItem(`${STORAGE_KEY}:${key}`, value);
-            callback && callback({ [ key ]: value });
+            const value = await AsyncStorage.getItem(`${STORAGE_KEY}:${key}`);
+            callback && callback({ [ key ]: JSON.parse(value) });
         } catch (e) {
             console.error(e);
         }

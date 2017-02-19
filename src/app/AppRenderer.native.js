@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
     View,
+    StyleSheet,
 } from 'react-native';
 
 import { Header } from '../modules/header';
@@ -10,7 +11,7 @@ import { RemindersList } from '../modules/remindersList';
 
 export default function(props, { reminders, editing }) {
     return (
-        <View>
+        <View style={ styles.component }>
             <Header />
             <RemindersInput
                 reminder={ editing }
@@ -24,3 +25,10 @@ export default function(props, { reminders, editing }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    component: {
+        flex: 1,
+        backgroundColor: '#FCFBFC',
+    },
+});

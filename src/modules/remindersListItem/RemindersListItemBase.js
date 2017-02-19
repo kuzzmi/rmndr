@@ -4,7 +4,7 @@ import { Utils } from '../../app';
 class RemindersListItemBase extends Component {
     constructor(props) {
         super(props);
-        
+
         [
             'handleReminderRemove',
             'handleReminderEdit',
